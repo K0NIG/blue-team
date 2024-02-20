@@ -63,6 +63,9 @@ Now you'll have ONE more problem before you get a successful entry. When you cal
 nmap -sV --script=scipag_vulscan/vulscan.nse {IP HERE}
 ```
 
+## Gobuster
+
+While using Gobuster I tried to use wordlists, but discovered they weren't there! No directory or anything. After a little research I found that you need to download files from [SecLists](https://github.com/danielmiessler/SecLists) in order to get these files such as common.txt
 
 
 <footer>
