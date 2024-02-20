@@ -7,9 +7,9 @@
   Add your open source license, GitHub uses MIT license.
 -->
 
-# GitHub Pages
+# Statement of Purpose 
 
-_Create a site or blog from your GitHub repositories with GitHub Pages._
+_Creating this page in order to build documentation on everything I learn and discover while I work on leveling up my pen testing skills. At some point I'm going to seperate these by individual pages because I think it will get long, but for right now I'm going to stick with this._
 
 </header>
 
@@ -21,22 +21,49 @@ _Create a site or blog from your GitHub repositories with GitHub Pages._
   Encourage users to open new tabs for steps!
 -->
 
-## Step 1: Enable GitHub Pages
+## The Toolbelt
 
-_Welcome to GitHub Pages and Jekyll :tada:!_
+I'm currently learning python, C#, and lua. As of this point in time, all the tools in my repository are all provided by _Linux Kali_. I do not own any of these tools, and Linux is an open source OS that can be downloaded for free online.
 
-The first step is to enable GitHub Pages on this [repository](https://docs.github.com/en/get-started/quickstart/github-glossary#repository). When you enable GitHub Pages on a repository, GitHub takes the content that's on the main branch and publishes a website based on its contents.
+1. Nmap
+  > While delving deeper into nmap, I started using scripts. I'm still going through the script repository and figuring out use cases, but I noticed when installing vulscan from the github repo the setup was a little different.
+1. telnet/smbclient
+1. redis-cli
+1. xfreerdp
+1. gobuster
+1. mongo shell
+1. rsync
 
-### :keyboard: Activity: Enable GitHub Pages
+### Nmap
 
-1. Open a new browser tab, and work on the steps in your second tab while you read the instructions in this tab.
-1. Under your repository name, click **Settings**.
-1. Click **Pages** in the **Code and automation** section.
-1. Ensure "Deploy from a branch" is selected from the **Source** drop-down menu, and then select `main` from the **Branch** drop-down menu.
-1. Click the **Save** button.
-1. Wait about _one minute_ then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
-   > Turning on GitHub Pages creates a deployment of your repository. GitHub Actions may take up to a minute to respond while waiting for the deployment. Future steps will be about 20 seconds; this step is slower.
-   > **Note**: In the **Pages** of **Settings**, the **Visit site** button will appear at the top. Click the button to see your GitHub Pages site.
+1. [vulscan.nse](https://github.com/scipag/vulscan)
+   - When navigating to the repository and going through the documentation, it states to use the following lines:
+   ```bash
+   git clone https://github.com/scipag/vulscan scipag_vulscan
+   ln -s `pwd`/scipag_vulscan /usr/share/nmap/scripts/vulscan
+``
+
+I ran into some trouble with this because on the first attempt I was told the following.
+```bash
+ln: failed to create symbolic link 'usr/share/nmap/scripts/vulscan': File exists
+```
+
+It looks like people using vulners were having the same issue [over in this thread](https://github.com/vulnersCom/nmap-vulners/issues/13). They clued me in on half the puzzle, which is that I wasn't currently in the file directory before trying to ececute the nmap scan, but the first half on how to establish the symnolic link was still missing. After a few searches later, I discovered a few things.
+1. Those are backticks, very different from commas.
+2. It's reversed.
+3. You need sudo.
+
+Here's the revised entry:
+```bash
+sudo ln -s /usr/share/nmap/scripts/vulscan `pwd`/scipag_vulscan
+```
+
+Now you'll have ONE more problem before you get a successful entry. When you call the script you don't use script=vulscan/vulscan.nse, you go into the vulscan directory and use scipag_vulscan/vulscan.nse. Again, here's the revision:
+```bash
+nmap -sV --script=scipag_vulscan/vulscan.nse {IP HERE}
+```
+
+
 
 <footer>
 
