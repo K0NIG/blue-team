@@ -33,6 +33,7 @@ I'm currently learning python, C#, and lua. As of this point in time, all the to
 1. gobuster
 1. mongo shell
 1. rsync
+1. Metasploit
 
 ### Nmap
 
@@ -67,6 +68,12 @@ nmap -sV --script=scipag_vulscan/vulscan.nse {IP HERE}
 
 While using Gobuster I tried to use wordlists, but discovered they weren't there! No directory or anything. After a little research I found that you need to download files from [SecLists](https://github.com/danielmiessler/SecLists) in order to get these files such as common.txt
 
+
+##Metasploit
+
+This is quickly becoming one of my favorite tools. I've been using a ton of the auxiliary scanner tools, but I've also used a few exploits. Nothing major to say on this just yet because I feel like it's a very straightforward program once you get the hang of it. You "search" for keywords to load the tools you're looking for, set them as currently active either by full listed path name or number via "use", type "options" to see some of the settings and configurations you can play with, and then use "set" or "unset" to input the values before using "run" or "exploit".
+
+This tool actually helped me discover a huge security flaw on my network that I was able to fix pretty quickly once I was aware of it. I think I can confidently say I would never have been aware of it without having sniffed around with it, and neither would any of my co-workers.
 
 <footer>
 
